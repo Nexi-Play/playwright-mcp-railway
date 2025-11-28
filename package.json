@@ -1,0 +1,12 @@
+{
+  "name": "playwright-mcp-railway",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/server-playwright": "latest",
+    "playwright": "latest"
+  }
+}
