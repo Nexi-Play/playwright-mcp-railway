@@ -1,37 +1,20 @@
-FROM node:18-slim
+FROM node:18-bullseye
 
-# Install dependencies needed for Playwright browsers
-RUN apt-get update && apt-get install -y \
-  wget \
-  ca-certificates \
-  fonts-liberation \
-  libasound2 \
-  libatk1.0-0 \
-  libatk-bridge2.0-0 \
-  libcups2 \
-  libdbus-1-3 \
-  libdrm2 \
-  libglib2.0-0 \
-  libgtk-3-0 \
-  libnspr4 \
-  libnss3 \
-  libx11-xcb1 \
-  libxcomposite1 \
-  libxdamage1 \
-  libxfixes3 \
-  libxrandr2 \
-  libxss1 \
-  libxtst6 \
-  xdg-utils \
-  && rm -rf /var/lib/apt/lists/*
+# 🔧 Update base image
+RUN apt-get update && apt-get upgrade -y
 
-WORKDIR /app
-
-COPY package.json .
-RUN npm install
-
-COPY . .
-
-EXPOSE 3001
-
-CMD ["npm", "start"]
+# 📦 Install system dependencies (ESSENCIAL)
+RUN apt-get install -y \
+    git \
+    python3 \
+    python3-pip \
+    build-essential \
+    libssl-dev \
+    libffi-dev \
+    libnss3 \
+    libxss1 \
+    libatk1.0-0 \
+    libatk-bridge2.0-0 \
+    libcups2 \
+    libdbus-1-3 \
+    libdr
