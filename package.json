@@ -6,7 +6,7 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "@modelcontextprotocol/server-playwright": "latest",
-    "playwright": "latest"
+    "playwright": "latest",
+    "@modelcontextprotocol/server-playwright": "git+https://github.com/modelcontextprotocol/servers-playwright.git"
   }
 }
