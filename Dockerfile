@@ -1,20 +1,20 @@
-RUN apt-get update && apt-get install -y \
-  git \
-  python3 \
-  build-essential \
-  libnss3 \
-  libatk1.0-0 \
-  libatk-bridge2.0-0 \
-  libcups2 \
-  libx11-xcb1 \
-  libxcomposite1 \
-  libxdamage1 \
-  libxrandr2 \
-  libgbm1 \
-  libglib2.0-0 \
-  libxss1 \
-  libxcursor1 \
-  libxfixes3 \
-  libxrender1 \
-  fonts-liberation \
-  && rm -rf /var/lib/apt/lists/*
+FROM mcr.microsoft.com/playwright:v1.45.0-focal
+
+# Install git and python for building MCP from GitHub
+USER root
+RUN apt-get update && apt-get install -y git python3 python3-pip
+
+WORKDIR /app
+
+# Copy package.json
+COPY package.json .
+
+# Install dependencies (including MCP via GitHub)
+RUN npm install
+
+# Copy app files
+COPY . .
+
+EXPOSE 3001
+
+CMD ["npm", "start"]
